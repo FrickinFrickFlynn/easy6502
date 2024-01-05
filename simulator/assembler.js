@@ -281,14 +281,18 @@ function SimulatorWidget(node) {
           html += ": ";
         }
 
-        html += (x + ": ");
+        html += (x + ":");
         html += num2hex(memory.get(start + x));
-        html += " ";    
+        html += "  ";    
       }
 
       html += "\n\n\n";
       
       for (var x = 0; x < length; x++) {
+        if ((x > 0) && ((x & 15) === 0)) {
+          html += "\n"; 
+        }
+        
         html += "0x";
         html += num2hex(memory.get(start + x));
         html += ", ";
