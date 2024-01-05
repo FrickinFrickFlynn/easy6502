@@ -240,7 +240,7 @@ function SimulatorWidget(node) {
   }
 
   function Memory() {
-    var memArray = new Array(0x800);
+    var memArray = new Array(0x8000);
 
     function set(addr, val) {
       return memArray[addr] = val;
@@ -303,7 +303,7 @@ function SimulatorWidget(node) {
     var regX = 0;
     var regY = 0;
     var regP = 0;
-    var regPC = 0x800;
+    var regPC = 0x8000;
     var regSP = 0xff;
     var codeRunning = false;
     var debug = false;
@@ -1684,11 +1684,11 @@ function SimulatorWidget(node) {
     // reset() - Reset CPU and memory.
     function reset() {
       display.reset();
-      for (var i = 0; i < 0x800; i++) { // clear ZP, stack and screen
+      for (var i = 0; i < 0x8000; i++) { // clear ZP, stack and screen
         memory.set(i, 0x00);
       }
       regA = regX = regY = 0;
-      regPC = 0x800;
+      regPC = 0x8000;
       regSP = 0xff;
       regP = 0x30;
       updateDebugInfo();
@@ -1891,7 +1891,7 @@ function SimulatorWidget(node) {
     
     // Assembles the code into memory
     function assembleCode() {
-      var BOOTSTRAP_ADDRESS = 0x800;
+      var BOOTSTRAP_ADDRESS = 0x8000;
 
       wasOutOfRangeBranch = false;
   
@@ -2465,7 +2465,7 @@ function SimulatorWidget(node) {
 
     // Dump binary as hex to new window
     function hexdump() {
-      openPopup(memory.format(0x800, codeLen), 'Hexdump');
+      openPopup(memory.format(0x8000, codeLen), 'Hexdump');
     }
 
     // TODO: Create separate disassembler object?
@@ -2598,7 +2598,7 @@ function SimulatorWidget(node) {
     }
 
     function disassemble() {
-      var startAddress = 0x800;
+      var startAddress = 0x8000;
       var currentAddress = startAddress;
       var endAddress = startAddress + codeLen;
       var instructions = [];
