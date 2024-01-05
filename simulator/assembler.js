@@ -280,8 +280,10 @@ function SimulatorWidget(node) {
           html += num2hex((n & 0xff));
           html += ": ";
         }
+
+        html += "0x";
         html += num2hex(memory.get(start + x));
-        html += " ";
+        html += ", ";
       }
       return html;
     }
